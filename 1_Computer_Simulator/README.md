@@ -2,6 +2,22 @@
 
 A Java implementation of a simple computer simulator (Simpletron) that reads and executes programs written in SML (Simpletron Machine Language). This project implements Exercise **7.37 (Computer Simulator)** from *Java How to Program* (Deitel).
 
+## What I Implemented
+
+This project implements a complete Simpletron simulator in Java from scratch, including:
+
+- Program loading with location-by-location prompts and a sentinel-controlled input loop
+- The full fetch–decode–execute instruction cycle (`instructionRegister` → `operationCode` / `operand`)
+- Accumulator-based arithmetic (ADD, SUBTRACT)
+- Conditional and unconditional branching (BRANCH, BRANCHNEG, BRANCHZERO)
+- Memory-mapped I/O (READ, WRITE) and load/store operations
+- **Input validation** — rejects out-of-range values (-9999 to +9999) during program loading and re-prompts the user
+- **Arithmetic overflow detection** — catches accumulator values outside the valid range during ADD/SUBTRACT and READ
+- **Invalid opcode detection** — halts execution with a fatal error on unrecognized operation codes
+- A full register and memory dump for debugging, triggered on both normal (HALT) and abnormal (fatal error) termination
+
+This goes beyond simply following the textbook spec — the error-handling paths (overflow checks, opcode validation, range checks) were designed to make the simulator fail safely and transparently rather than silently produce incorrect results.
+
 ## Overview
 
 The Simpletron is a hypothetical computer with:
@@ -34,8 +50,8 @@ Every SML instruction (or data value) is a signed four-digit integer (range -999
 ## Build & Run
 
 ```bash
-javac Simpletron.java
-java Simpletron
+javac Computer_Simulator.java
+java Computer_Simulator
 ```
 
 ## Usage
@@ -113,7 +129,7 @@ MEMORY:
 
 ```
 .
-├── Simpletron.java   # Simulator main program
+├── Computer_Simulator.java   # Simulator main program
 └── README.md
 ```
 
@@ -133,6 +149,22 @@ MIT
 # Simpletron 模擬器
 
 一個以 Java 實作的簡易電腦模擬器（Simpletron），可讀取並執行 SML（Simpletron Machine Language）機器語言程式。此專案為 *Java How to Program*（Deitel）習題 **7.37（Computer Simulator）** 的實作。
+
+## 實作內容
+
+本專案從零實作了一個完整的 Simpletron 模擬器，包含：
+
+- 程式載入流程：逐一提示記憶體位置、以哨兵值（sentinel）控制輸入迴圈結束
+- 完整的 fetch–decode–execute 指令週期（`instructionRegister` → `operationCode` / `operand`）
+- 以累加器為核心的算術運算（ADD、SUBTRACT）
+- 條件與無條件分支跳躍（BRANCH、BRANCHNEG、BRANCHZERO）
+- 記憶體對應的輸入輸出（READ、WRITE）與載入/儲存操作
+- **輸入驗證**：載入階段拒絕超出範圍（-9999 ～ +9999）的數值，並要求重新輸入
+- **算術溢位偵測**：ADD/SUBTRACT 與 READ 過程中偵測累加器數值超出合法範圍
+- **無效運算碼偵測**：遇到未定義的運算碼時，以致命錯誤方式終止執行
+- 完整的暫存器與記憶體傾印（dump）功能，於正常結束（HALT）與異常終止（fatal error）時皆會輸出，方便除錯
+
+這不只是照著課本規格實作，錯誤處理路徑（溢位檢查、運算碼驗證、範圍檢查）的設計目的是讓模擬器「安全且透明地失敗」，而不是默默產生錯誤結果。
 
 ## 專案簡介
 
@@ -166,8 +198,8 @@ Simpletron 是一台假想的電腦，擁有：
 ## 如何編譯與執行
 
 ```bash
-javac Simpletron.java
-java Simpletron
+javac Computer_Simulator.java
+java Computer_Simulator
 ```
 
 ## 使用方式
@@ -245,7 +277,7 @@ MEMORY:
 
 ```
 .
-├── Simpletron.java   # 模擬器主程式
+├── Computer_Simulator.java   # 模擬器主程式
 └── README.md
 ```
 
