@@ -1,0 +1,45 @@
+Fig.7.36 Behavior of several SML instructions in the Simpletron.
+
+When the SML program completes execution, the name and contents of each register as well as the complete contents of memory should be displayed. Such a printout is often called a computer dump (no, a computer dump is not a place where old computers go). To help you program your dump method, a sample dump format is shown in Fig.7.37. A dump after executing a Simpletron program would show the actual values of instructions and data values at the moment execution terminated.
+
+REGISTERS :
+Accumulator +0000
+instructionCounter 00
+instructionRegister +0000
+operationCode 00
+operand 00
+MEMORY :
+	0	1	2	3	4	5	6	7	8	9
+0	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+10	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+20	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+30	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+40	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+50	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+60	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+70	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+80	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+90	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000	+0000
+
+Fig.7.37 | A sample dump.
+Let's proceed with the execution of our program's first instruction--namely, the +1009 location 00. As we've indicated, the switch statement simulates this task by prompting the user to enter a value, reading the value and storing it in memory location memory[operand]. The value is then read into location 09.
+At this point, simulation of the first instion is completed. All that remains is to prepare the Simpletron to execute the next instruction. Since the instruction just performed was not a transfer of control, we need merely increment the instruction-counter register
+instructionCounter++;
+This action completes the simulated execution of the first instruction. The entire process (i.e., the instruction-execution cycle) begins anew with the fetch of the next instruction to execute.
+Now let's consider how the branching instructions--the transfers of control—are simulated.
+All we need to do is adjust the value in the instruction counter appropriately. Therefore, the unconditional branch instruction (40) is simulated within the switch as
+instructionCounter = operand;
+The conditional "branch if accumulator is zero" instruction is simulated as
+if (accumulator == 0){
+instructionCounter = operand;
+}
+
+At this point, you should implement your Simpletron simulator and run each of the SML programs you wrote in Exercise 7.36. If you desire, you may embellish SML with additional features and provide for these features in your simulator.
+
+Your simulator should check for various types of errors. During the program-loading phase, for example, each number the user types into the Simpletron's memory must be in the range -9999 to +9999. Your simulator should test that each number entered is in this range and, if not, keep prompting the user to re-enter the number until the user enters a correct number.
+During the execution phase, your simulator should check for various serious errors, such as attempts to divide by zero, attempts to execute invalid operation codes, and accumulator overflows (i.e., arithmetic operations resulting in values larger than +99999 or smaller than -99999). 
+
+Such serious errors are called fatal error. When a fatal error is detected, your simulator should display an error message, such as
+*** Attempt to divide by zero ****
+*** Simpletron execution abnormally terminated ***
+and should display a full computer dump in the format we discussed previously. This treatment will help the user locate the error in the program.

@@ -1,0 +1,19 @@
+Making a Difference
+Chapter 10.19 CarbonFootprint Interface: Polymorphism
+
+Using interfaces, as you learned in this chapter, you can specify similar behaviors for possibly disparate classes. 
+Governments and companies worldwide are becoming increasingly concerned with carbon footprints (annual releases of carbon dioxide into the atmosphere) from buildings burning various types of fuels for heat, vehicles burning fuels for power, and the like. 
+Many scientists blame these greenhouse gases for the phenomenon called global warming. 
+
+Create three small classes unrelated by inheritance--classes Bding, Car and Bicycle. Give each class some unique appropriate attributes and behaviors that it does not have in common with other classes. Write an interface CarbonFootprint with a getCarbonFootprint method. 
+Have each of your classes implement that interface, so that its getCarbonFootprint method
+culculates an appropriate carbon footprint for that class (check out a few websites that explain how to calculate carbon footprints). 
+Write an application that creates objects of each of the three classes, places references to those objects in ArrayList <CarbonFootprint>, then iterates through the ArrayList, polymorphically invoking each object's getCarbonFootprint method. For each object, print some identifying information and the object's carbon foorprint.
+
+
+基於Java介面和多態性的程式，模擬計算不同物件的碳足跡（Carbon Footprint）。具體要求如下：
+
+創建三個不相關（無繼承關係）的類：Building、Car 和 Bicycle，每個類有獨特的屬性和行為。
+定義一個名為 CarbonFootprint 的介面，包含一個 getCarbonFootprint 方法。
+讓每個類實現 CarbonFootprint 介面，並根據各自特性計算碳足跡。
+撰寫一個應用程式，創建這三個類的物件，將它們放入 ArrayList<CarbonFootprint>，並通過多態調用每個物件的 getCarbonFootprint 方法，輸出物件的描述資訊和碳足跡。
